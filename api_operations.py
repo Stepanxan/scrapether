@@ -22,7 +22,7 @@ def make_api_url(module, action, address, **kwargs):
 def get_previous_transaction(address):
     get_transactions_url = make_api_url("account", "txlist", address, startblock=0, endblock=99999999, page=1, offset=2, sort="desc")
     response = requests.get(get_transactions_url)
-    data = response.json()["result"]
+    data = response.json().get("result")
 
     if len(data) >= 2:
         start_get_transaction_time = time.time()
